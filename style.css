@@ -1,0 +1,120 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f4f9;
+}
+#toggle-login {
+  display: none;
+}
+
+/*
+VENTANA 1: PANTALLA DE LOGIN
+*/
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 300px;
+}
+
+.login-box h2 {
+  text-align: center;
+  color: #333333;
+}
+
+.login-box input {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.login-box input:focus {
+  border-color: #007bff;
+}
+
+.btn-ingresar {
+  display: inline-block;
+  text-align: center;
+  background: #007bff;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn-ingresar:hover {
+  background: #0056b3;
+}
+/*
+VENTANA 2: MENÚ Y CONTENIDO PRINCIPAL
+*/
+.main-container {
+  display: none;
+  height: 100vh;
+  flex-direction: column;
+}
+
+/* TRUCO CSS: Al marcar el checkbox, oculta Login y muestra la App */
+#toggle-login:checked ~ .login-container {
+  display: none;
+}
+
+#toggle-login:checked ~ .main-container {
+  display: flex;
+}
+
+/* Menú Flotante Superior */
+.menu-flotante {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  z-index: 1000;
+}
+
+.menu-flotante a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 16px;
+  background: #555555;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.menu-flotante a:hover {
+  background: #007bff;
+}
+
+/* Contenedor Iframe donde se abren las páginas dinámicamente */
+.contenido-iframe {
+  margin-top: 60px; /* Offset para no tapar el contenido con el menú flotante */
+  width: 100%;
+  height: calc(100vh - 60px);
+  border: none;
+}
