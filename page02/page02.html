@@ -1,406 +1,437 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="UTF-8">
-<title>Page 02 - Shipping &amp; Color Picker</title>
-<style>
-  * { box-sizing: border-box; }
+  <head>
+    <meta charset="UTF-8" />
+    <title>Page 02 - Shipping &amp; Color Picker</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-  body {
-    margin: 0;
-    padding: 40px 20px;
-    min-height: 100vh;
-    background: #f2f2f2;
-    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
+      body {
+        margin: 0;
+        padding: 40px 20px;
+        min-height: 100vh;
+        background: #f2f2f2;
+        font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
 
-  /* ===================== 3.a  VENTANA CON ICONOS + TABS + RADIOS ===================== */
+      /* ===================== 3.a  VENTANA CON ICONOS + TABS + RADIOS ===================== */
 
-  .window {
-    width: 100%;
-    max-width: 700px;
-    background: #1c1c1c;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-    color: #eaeaea;
-  }
+      .window {
+        width: 100%;
+        max-width: 700px;
+        background: #1c1c1c;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        color: #eaeaea;
+      }
 
-  /* barra superior con 4 iconos svg */
-  .titlebar {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 16px;
-    padding: 10px 16px;
-    background: #171717;
-    border-bottom: 1px solid #2a2a2a;
-  }
+      /* barra superior con 4 iconos svg */
+      .titlebar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 16px;
+        padding: 10px 16px;
+        background: #171717;
+        border-bottom: 1px solid #2a2a2a;
+      }
 
-  .titlebar svg {
-    width: 18px;
-    height: 18px;
-    stroke: #9a9a9a;
-    fill: none;
-    stroke-width: 1.6;
-    cursor: pointer;
-    transition: stroke .2s;
-  }
-  .titlebar svg:hover { stroke: #ffffff; }
+      .titlebar svg {
+        width: 20px;
+        height: 20px;
+        stroke: #9a9a9a;
+        fill: none;
+        stroke-width: 1.6;
+        cursor: pointer;
+        transition: stroke 0.2s;
+      }
+      .titlebar svg:hover {
+        stroke: #ffffff;
+      }
 
-  /* ---- 3 pestañas de selección (steps) ---- */
-  .steps {
-    display: flex;
-    justify-content: space-between;
-    padding: 26px 30px 20px;
-  }
+      /* ---- 3 pestañas de selección (steps) ---- */
+      .steps {
+        display: flex;
+        justify-content: space-between;
+        padding: 26px 30px 20px;
+      }
 
-  .step {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    color: #6f6f6f;
-    cursor: pointer;
-    user-select: none;
-  }
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: #6f6f6f;
+        cursor: pointer;
+        user-select: none;
+      }
 
-  .step .circle {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    background: #3a3a3a;
-    color: #b5b5b5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
-    transition: background .2s, color .2s;
-  }
+      .step .circle {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #3a3a3a;
+        color: #b5b5b5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
 
-  .step.active { color: #ffffff; }
-  .step.active .circle { background: #4f9dff; color: #fff; }
+      .step.active {
+        color: #ffffff;
+      }
+      .step.active .circle {
+        background: #4f9dff;
+        color: #fff;
+      }
 
-  .step.done .circle { background: #4caf50; color: #fff; }
+      .step.done .circle {
+        background: #4caf50;
+        color: #fff;
+      }
 
-  /* ---- contenido: shipping / radio buttons ---- */
-  .content {
-    padding: 0 30px 30px;
-  }
+      /* ---- contenido: shipping / radio buttons ---- */
+      .content {
+        padding: 0 30px 30px;
+      }
 
-  .content h2 {
-    margin: 0 0 20px;
-    font-size: 22px;
-  }
+      .content h2 {
+        margin: 0 0 20px;
+        font-size: 22px;
+      }
 
-  .field-label {
-    font-size: 12px;
-    color: #8d8d8d;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    margin-bottom: 14px;
-  }
+      .field-label {
+        font-size: 12px;
+        color: #8d8d8d;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 14px;
+      }
 
-  .radio-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    font-size: 15px;
-    cursor: pointer;
-  }
+      .radio-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        font-size: 15px;
+        cursor: pointer;
+      }
 
-  /* radio button custom */
-  .radio-row input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border: 2px solid #6f6f6f;
-    border-radius: 50%;
-    display: grid;
-    place-content: center;
-    margin: 0;
-    cursor: pointer;
-    transition: border-color .2s;
-  }
+      /* radio button custom */
+      .radio-row input[type="radio"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid #6f6f6f;
+        border-radius: 50%;
+        display: grid;
+        place-content: center;
+        margin: 0;
+        cursor: pointer;
+        transition: border-color 0.2s;
+      }
 
-  .radio-row input[type="radio"]::before {
-    content: "";
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: #4f9dff;
-    transform: scale(0);
-    transition: transform .15s ease-in-out;
-  }
+      .radio-row input[type="radio"]::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #4f9dff;
+        transform: scale(0);
+        transition: transform 0.15s ease-in-out;
+      }
 
-  .radio-row input[type="radio"]:checked { border-color: #4f9dff; }
-  .radio-row input[type="radio"]:checked::before { transform: scale(1); }
+      .radio-row input[type="radio"]:checked {
+        border-color: #4f9dff;
+      }
+      .radio-row input[type="radio"]:checked::before {
+        transform: scale(1);
+      }
 
-  hr.sep {
-    border: none;
-    border-top: 1px solid #2a2a2a;
-    margin: 24px 0;
-  }
+      hr.sep {
+        border: none;
+        border-top: 1px solid #2a2a2a;
+        margin: 24px 0;
+      }
 
-  .actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+      .actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-  .btn {
-    border: none;
-    border-radius: 6px;
-    padding: 10px 22px;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: .04em;
-    cursor: pointer;
-  }
+      .btn {
+        border: none;
+        border-radius: 6px;
+        padding: 10px 22px;
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+      }
 
-  .btn-ghost {
-    background: transparent;
-    color: #b5b5b5;
-  }
-  .btn-ghost:hover { color: #fff; }
+      .btn-ghost {
+        background: transparent;
+        color: #b5b5b5;
+      }
+      .btn-ghost:hover {
+        color: #fff;
+      }
 
-  .btn-primary {
-    background: #4f9dff;
-    color: #fff;
-  }
-  .btn-primary:hover { background: #3f8ceb; }
+      .btn-primary {
+        background: #4f9dff;
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: #3f8ceb;
+      }
 
-  /* ===================== 3.b  CARD DE COLOR (2 PARTES) ===================== */
+      /* ===================== 3.b  CARD DE COLOR (2 PARTES) ===================== */
 
-  .color-card {
-    width: 100%;
-    max-width: 340px;
-    background: #1c1c1c;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  }
+      .color-card {
+        width: 100%;
+        max-width: 340px;
+        background: #1c1c1c;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
 
-  /* parte 1: rectángulo con bordes redondeados que contiene el color */
-  .color-preview {
-    height: 220px;
-    border-radius: 14px 14px 0 0;
-    background: rgb(80, 165, 92);
-    transition: background .1s linear;
-  }
+      /* parte 1: rectángulo con bordes redondeados que contiene el color */
+      .color-preview {
+        height: 220px;
+        border-radius: 14px 14px 0 0;
+        background: rgb(80, 165, 92);
+        transition: background 0.1s linear;
+      }
 
-  /* parte 2: 3 sliders + 3 text field numéricos */
-  .color-controls {
-    padding: 22px 24px 26px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-  }
+      /* parte 2: 3 sliders + 3 text field numéricos */
+      .color-controls {
+        padding: 22px 24px 26px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
 
-  .slider-row {
-    display: grid;
-    grid-template-columns: 18px 1fr 64px;
-    align-items: center;
-    gap: 14px;
-  }
+      .slider-row {
+        display: grid;
+        grid-template-columns: 18px 1fr 64px;
+        align-items: center;
+        gap: 14px;
+      }
 
-  .slider-row label {
-    color: #cfcfcf;
-    font-size: 14px;
-    font-weight: 600;
-  }
+      .slider-row label {
+        color: #cfcfcf;
+        font-size: 14px;
+        font-weight: 600;
+      }
 
-  .slider-row input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 4px;
-    border-radius: 2px;
-    background: #4a4a4a;
-    outline: none;
-  }
+      .slider-row input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 4px;
+        border-radius: 2px;
+        background: #4a4a4a;
+        outline: none;
+      }
 
-  .slider-row input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #e8e8e8;
-    cursor: pointer;
-    border: none;
-  }
+      .slider-row input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #e8e8e8;
+        cursor: pointer;
+        border: none;
+      }
 
-  .slider-row input[type="range"]::-moz-range-thumb {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: #e8e8e8;
-    cursor: pointer;
-    border: none;
-  }
+      .slider-row input[type="range"]::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #e8e8e8;
+        cursor: pointer;
+        border: none;
+      }
 
-  .slider-row input[type="number"] {
-    width: 100%;
-    background: #2a2a2a;
-    border: 1px solid #3d3d3d;
-    border-radius: 6px;
-    color: #eaeaea;
-    padding: 6px 8px;
-    font-size: 14px;
-    text-align: center;
-  }
+      .slider-row input[type="number"] {
+        width: 100%;
+        background: #2a2a2a;
+        border: 1px solid #3d3d3d;
+        border-radius: 6px;
+        color: #eaeaea;
+        padding: 6px 8px;
+        font-size: 14px;
+        text-align: center;
+      }
 
-  .slider-row input[type="number"]::-webkit-inner-spin-button {
-    opacity: 1;
-  }
+      .slider-row input[type="number"]::-webkit-inner-spin-button {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============ 3.a  Ventana: 4 iconos svg + 3 tabs + 3 radio buttons ============ -->
+    <div class="window">
+      <!-- barra superior con 4 iconos svg -->
+      <div class="titlebar">
+        <!-- icono sol -->
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+          />
+        </svg>
+        <!-- icono bandera -->
+        <svg viewBox="0 0 24 24">
+          <path d="M5 3v18" />
+          <path d="M5 4h11l-2 3 2 3H5" />
+        </svg>
+        <!-- icono copiar -->
+        <svg viewBox="0 0 24 24">
+          <rect x="9" y="9" width="11" height="11" rx="2" />
+          <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+        </svg>
+        <!-- icono code -->
+        <svg viewBox="0 0 24 24">
+          <polyline points="8 6 3 12 8 18" />
+          <polyline points="16 6 21 12 16 18" />
+        </svg>
+      </div>
 
-</style>
-</head>
-<body>
+      <!-- 3 pestañas de selección -->
+      <div class="steps">
+        <div class="step done" data-step="1">
+          <span class="circle">1</span> Review Order
+        </div>
+        <div class="step active" data-step="2">
+          <span class="circle">2</span> Select Shipping
+        </div>
+        <div class="step" data-step="3">
+          <span class="circle">3</span> Submit
+        </div>
+      </div>
 
-  <!-- ============ 3.a  Ventana: 4 iconos svg + 3 tabs + 3 radio buttons ============ -->
-  <div class="window">
+      <div class="content">
+        <h2>Shipping</h2>
+        <div class="field-label">Delivery Method</div>
 
-    <!-- barra superior con 4 iconos svg -->
-    <div class="titlebar">
-      <!-- icono sol -->
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-      <!-- icono bandera -->
-      <svg viewBox="0 0 24 24"><path d="M5 3v18"/><path d="M5 4h11l-2 3 2 3H5"/></svg>
-      <!-- icono copiar -->
-      <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
-      <!-- icono code -->
-      <svg viewBox="0 0 24 24"><polyline points="8 6 3 12 8 18"/><polyline points="16 6 21 12 16 18"/></svg>
+        <!-- 3 radio buttons -->
+        <label class="radio-row">
+          <input type="radio" name="shipping" value="standard" checked />
+          Standard Shipping
+        </label>
+        <label class="radio-row">
+          <input type="radio" name="shipping" value="priority" />
+          Priority Shipping
+        </label>
+        <label class="radio-row">
+          <input type="radio" name="shipping" value="express" />
+          Express Shipping
+        </label>
+
+        <hr class="sep" />
+
+        <div class="actions">
+          <button class="btn btn-ghost">PREVIOUS</button>
+          <button class="btn btn-primary">NEXT</button>
+        </div>
+      </div>
     </div>
 
-    <!-- 3 pestañas de selección -->
-    <div class="steps">
-      <div class="step done" data-step="1">
-        <span class="circle">1</span> Review Order
-      </div>
-      <div class="step active" data-step="2">
-        <span class="circle">2</span> Select Shipping
-      </div>
-      <div class="step" data-step="3">
-        <span class="circle">3</span> Submit
-      </div>
-    </div>
+    <!-- ============ 3.b  Card de color: rectángulo + 3 sliders/text field RGB ============ -->
+    <div class="color-card">
+      <!-- parte 1: color -->
+      <div class="color-preview" id="colorPreview"></div>
 
-    <div class="content">
-      <h2>Shipping</h2>
-      <div class="field-label">Delivery Method</div>
+      <!-- parte 2: sliders + inputs numéricos -->
+      <div class="color-controls">
+        <div class="slider-row">
+          <label for="rRange">R</label>
+          <input type="range" id="rRange" min="0" max="255" value="80" />
+          <input type="number" id="rNum" min="0" max="255" value="80" />
+        </div>
 
-      <!-- 3 radio buttons -->
-      <label class="radio-row">
-        <input type="radio" name="shipping" value="standard" checked>
-        Standard Shipping
-      </label>
-      <label class="radio-row">
-        <input type="radio" name="shipping" value="priority">
-        Priority Shipping
-      </label>
-      <label class="radio-row">
-        <input type="radio" name="shipping" value="express">
-        Express Shipping
-      </label>
+        <div class="slider-row">
+          <label for="gRange">G</label>
+          <input type="range" id="gRange" min="0" max="255" value="165" />
+          <input type="number" id="gNum" min="0" max="255" value="165" />
+        </div>
 
-      <hr class="sep">
-
-      <div class="actions">
-        <button class="btn btn-ghost">PREVIOUS</button>
-        <button class="btn btn-primary">NEXT</button>
+        <div class="slider-row">
+          <label for="bRange">B</label>
+          <input type="range" id="bRange" min="0" max="255" value="92" />
+          <input type="number" id="bNum" min="0" max="255" value="92" />
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ============ 3.b  Card de color: rectángulo + 3 sliders/text field RGB ============ -->
-  <div class="color-card">
-
-    <!-- parte 1: color -->
-    <div class="color-preview" id="colorPreview"></div>
-
-    <!-- parte 2: sliders + inputs numéricos -->
-    <div class="color-controls">
-
-      <div class="slider-row">
-        <label for="rRange">R</label>
-        <input type="range" id="rRange" min="0" max="255" value="80">
-        <input type="number" id="rNum" min="0" max="255" value="80">
-      </div>
-
-      <div class="slider-row">
-        <label for="gRange">G</label>
-        <input type="range" id="gRange" min="0" max="255" value="165">
-        <input type="number" id="gNum" min="0" max="255" value="165">
-      </div>
-
-      <div class="slider-row">
-        <label for="bRange">B</label>
-        <input type="range" id="bRange" min="0" max="255" value="92">
-        <input type="number" id="bNum" min="0" max="255" value="92">
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    // ---- interacción de las 3 pestañas ----
-    document.querySelectorAll('.step').forEach(step => {
-      step.addEventListener('click', () => {
-        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-        step.classList.add('active');
+    <script>
+      // ---- interacción de las 3 pestañas ----
+      document.querySelectorAll(".step").forEach((step) => {
+        step.addEventListener("click", () => {
+          document
+            .querySelectorAll(".step")
+            .forEach((s) => s.classList.remove("active"));
+          step.classList.add("active");
+        });
       });
-    });
 
-    // ---- sincronizar sliders + text field numéricos -> color en tiempo real ----
-    const rRange = document.getElementById('rRange');
-    const gRange = document.getElementById('gRange');
-    const bRange = document.getElementById('bRange');
-    const rNum = document.getElementById('rNum');
-    const gNum = document.getElementById('gNum');
-    const bNum = document.getElementById('bNum');
-    const preview = document.getElementById('colorPreview');
+      // ---- sincronizar sliders + text field numéricos -> color en tiempo real ----
+      const rRange = document.getElementById("rRange");
+      const gRange = document.getElementById("gRange");
+      const bRange = document.getElementById("bRange");
+      const rNum = document.getElementById("rNum");
+      const gNum = document.getElementById("gNum");
+      const bNum = document.getElementById("bNum");
+      const preview = document.getElementById("colorPreview");
 
-    function clamp(v) {
-      v = parseInt(v, 10);
-      if (isNaN(v)) v = 0;
-      return Math.min(255, Math.max(0, v));
-    }
+      function clamp(v) {
+        v = parseInt(v, 10);
+        if (isNaN(v)) v = 0;
+        return Math.min(255, Math.max(0, v));
+      }
 
-    function updateColor() {
-      const r = clamp(rRange.value);
-      const g = clamp(gRange.value);
-      const b = clamp(bRange.value);
-      preview.style.background = `rgb(${r}, ${g}, ${b})`;
-    }
+      function updateColor() {
+        const r = clamp(rRange.value);
+        const g = clamp(gRange.value);
+        const b = clamp(bRange.value);
+        preview.style.background = `rgb(${r}, ${g}, ${b})`;
+      }
 
-    function linkPair(range, num) {
-      range.addEventListener('input', () => {
-        num.value = range.value;
-        updateColor();
-      });
-      num.addEventListener('input', () => {
-        const v = clamp(num.value);
-        num.value = v;
-        range.value = v;
-        updateColor();
-      });
-    }
+      function linkPair(range, num) {
+        range.addEventListener("input", () => {
+          num.value = range.value;
+          updateColor();
+        });
+        num.addEventListener("input", () => {
+          const v = clamp(num.value);
+          num.value = v;
+          range.value = v;
+          updateColor();
+        });
+      }
 
-    linkPair(rRange, rNum);
-    linkPair(gRange, gNum);
-    linkPair(bRange, bNum);
+      linkPair(rRange, rNum);
+      linkPair(gRange, gNum);
+      linkPair(bRange, bNum);
 
-    updateColor();
-  </script>
-
-</body>
+      updateColor();
+    </script>
+  </body>
 </html>
