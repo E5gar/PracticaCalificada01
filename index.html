@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pagina principal</title>
+  </head>
+  <body>
+    <input type="checkbox" id="auth-toggle" />
+    <input type="checkbox" id="toggle-login" />
+
+    <!-- VENTANA 1: LOGIN -->
+    <div class="login-container">
+      <div class="login-box">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" placeholder="Ejemplo Nombre" />
+        <input type="email" placeholder="correo@ejemplo.com" />
+        <label for="toggle-login" class="btn-ingresar">Ingresar</label>
+      </div>
+    </div>
+
+    <!-- VENTANA 2: MENÚ Y CONTENIDO -->
+    <div class="main-container">
+      <!-- Menú flotante -->
+      <nav class="menu-flotante">
+        <a href="page01/page01.html" target="visor">Page 01</a>
+        <a href="page02/page02.html" target="visor">Page 02</a>
+        <a href="page03/page03.html" target="visor">Page 03</a>
+      </nav>
+
+      <!-- Área donde se abrirán las páginas -->
+      <iframe name="visor" class="contenido-iframe" src="page01/page01.html"></iframe>
+    </div>
+  </body>
+</html>
